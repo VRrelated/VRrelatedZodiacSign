@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Zodiac sign</title>
+    <style>
+        /* Basic Reset */
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+    
+        body {
+            background-color: #F3F3E0;
+            color: #1A1A19;
+            text-align: center;
+            padding: 20px;
+        }
+    
+        h1 {
+            color: #C9D6DF;
+            margin-bottom: 20px;
+        }
+    
+        .tool {
+            background-color: #52616B;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px auto;
+            max-width: 400px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+            color: #F0F5F9;
+        }
+    
+        .tool input, .tool button, .tool select {
+            padding: 10px;
+            margin: 10px 0;
+            border-radius: 4px;
+            border: 1px solid #C9D6DF;
+            width: 100%;
+            color: #1E2022;
+            background-color: #F0F5F9;
+        }
+    
+        button {
+            background-color: #C9D6DF;
+            color: #1E2022;
+            cursor: pointer;
+            transition: background-color 0.3s;
+        }
+    
+        button:hover {
+            background-color: #F3F3E0;
+        }
+    
+        #result {
+            margin-top: 20px;
+        }
+    
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .tool {
+                width: 90%;
+            }
+        }
+    </style>
+    
+</head>
+<body>
+    <h1>Astrology Fun Tools</h1>
+
+    <!-- Zodiac Sign Compatibility -->
+    <div class="tool" id="zodiac-compatibility">
+        <h2>Zodiac Sign Compatibility</h2>
+        <select id="sign1">
+            <option value="">Select Your Sign</option>
+            <option value="Aries">Aries</option>
+            <option value="Taurus">Taurus</option>
+            <option value="Gemini">Gemini</option>
+            <option value="Cancer">Cancer</option>
+            <option value="Leo">Leo</option>
+            <option value="Virgo">Virgo</option>
+            <option value="Libra">Libra</option>
+            <option value="Scorpio">Scorpio</option>
+            <option value="Sagittarius">Sagittarius</option>
+            <option value="Capricorn">Capricorn</option>
+            <option value="Aquarius">Aquarius</option>
+            <option value="Pisces">Pisces</option>
+        </select>
+        <select id="sign2">
+            <option value="">Select Partner's Sign</option>
+            <option value="Aries">Aries</option>
+            <option value="Taurus">Taurus</option>
+            <option value="Gemini">Gemini</option>
+            <option value="Cancer">Cancer</option>
+            <option value="Leo">Leo</option>
+            <option value="Virgo">Virgo</option>
+            <option value="Libra">Libra</option>
+            <option value="Scorpio">Scorpio</option>
+            <option value="Sagittarius">Sagittarius</option>
+            <option value="Capricorn">Capricorn</option>
+            <option value="Aquarius">Aquarius</option>
+            <option value="Pisces">Pisces</option>
+        </select>
+        <button onclick="checkCompatibility()">Check Compatibility</button>
+        <div id="compatibility-result"></div>
+    </div>
+
+    <!-- Zodiac Sign Personality Test -->
+    <div class="tool" id="zodiac-personality">
+        <h2>Zodiac Sign Personality Test</h2>
+        <select id="personality-sign">
+            <option value="">Select Your Sign</option>
+            <option value="Aries">Aries</option>
+            <option value="Taurus">Taurus</option>
+            <option value="Gemini">Gemini</option>
+            <option value="Cancer">Cancer</option>
+            <option value="Leo">Leo</option>
+            <option value="Virgo">Virgo</option>
+            <option value="Libra">Libra</option>
+            <option value="Scorpio">Scorpio</option>
+            <option value="Sagittarius">Sagittarius</option>
+            <option value="Capricorn">Capricorn</option>
+            <option value="Aquarius">Aquarius</option>
+            <option value="Pisces">Pisces</option>
+        </select>
+        <button onclick="showPersonality()">Show Personality</button>
+        <div id="personality-result"></div>
+    </div>
+
+    <!-- New Zodiac Sign Generator -->
+    <div class="tool" id="new-zodiac">
+        <h2>New Zodiac Sign Generator</h2>
+        <button onclick="generateNewSign()">Generate New Zodiac Sign</button>
+        <div id="new-sign-result"></div>
+    </div>
+
+    <!-- Celebrity Zodiac Match -->
+    <div class="tool" id="celebrity-match">
+        <h2>Celebrity Zodiac Match</h2>
+        <select id="celebrity-sign">
+            <option value="">Select Your Sign</option>
+            <option value="Aries">Aries</option>
+            <option value="Taurus">Taurus</option>
+            <option value="Gemini">Gemini</option>
+            <option value="Cancer">Cancer</option>
+            <option value="Leo">Leo</option>
+            <option value="Virgo">Virgo</option>
+            <option value="Libra">Libra</option>
+            <option value="Scorpio">Scorpio</option>
+            <option value="Sagittarius">Sagittarius</option>
+            <option value="Capricorn">Capricorn</option>
+            <option value="Aquarius">Aquarius</option>
+            <option value="Pisces">Pisces</option>
+        </select>
+        <button onclick="matchCelebrity()">Find Celebrity Match</button>
+        <div id="celebrity-result"></div>
+    </div>
+
+    <script>
+        // Zodiac Sign Compatibility
+        function checkCompatibility() {
+            const sign1 = document.getElementById("sign1").value;
+            const sign2 = document.getElementById("sign2").value;
+            if (!sign1 || !sign2) {
+                document.getElementById("compatibility-result").innerText = "Please select both signs.";
+                return;
+            }
+            document.getElementById("compatibility-result").innerText = `${sign1} and ${sign2} have a wonderful compatibility!`;
+        }
+
+        // Zodiac Sign Personality
+        function showPersonality() {
+            const sign = document.getElementById("personality-sign").value;
+            const personalities = {
+                Aries: "Energetic and dynamic",
+                Taurus: "Reliable and practical",
+                Gemini: "Intelligent and adaptable",
+                Cancer: "Intuitive and caring",
+                Leo: "Confident and charismatic",
+                Virgo: "Detail-oriented and analytical",
+                Libra: "Charming and diplomatic",
+                Scorpio: "Passionate and intense",
+                Sagittarius: "Adventurous and open-minded",
+                Capricorn: "Disciplined and responsible",
+                Aquarius: "Inventive and independent",
+                Pisces: "Compassionate and artistic"
+            };
+            document.getElementById("personality-result").innerText = personalities[sign] || "Please select a sign.";
+        }
+
+        // New Zodiac Sign Generator
+        function generateNewSign() {
+            const newSigns = [
+                { name: "Orion", dates: "Jan 1 - Jan 21", strengths: "Creative, Ambitious", personality: "Visionary and bold", compatibility: "Compatible with Aries and Aquarius" },
+                { name: "Phoenix", dates: "Feb 10 - Mar 1", strengths: "Resilient, Charismatic", personality: "Regenerative and wise", compatibility: "Compatible with Leo and Scorpio" },
+                { name: "Lyra", dates: "Mar 15 - Apr 5", strengths: "Harmonious, Optimistic", personality: "Joyful and diplomatic", compatibility: "Compatible with Libra and Pisces" },
+                { name: "Draco", dates: "Apr 10 - May 1", strengths: "Loyal, Determined", personality: "Strong-willed and protective", compatibility: "Compatible with Taurus and Cancer" },
+                { name: "Hydra", dates: "May 12 - Jun 3", strengths: "Intuitive, Resourceful", personality: "Curious and wise", compatibility: "Compatible with Gemini and Virgo" },
+                { name: "Phoenixia", dates: "Jun 6 - Jul 2", strengths: "Resilient, Fiery", personality: "Reborn and passionate", compatibility: "Compatible with Scorpio and Sagittarius" }
+            ];
+            const randomSign = newSigns[Math.floor(Math.random() * newSigns.length)];
+            document.getElementById("new-sign-result").innerText = `${randomSign.name}: ${randomSign.dates}, Strengths: ${randomSign.strengths}, Personality: ${randomSign.personality}, Compatibility: ${randomSign.compatibility}`;
+        }
+
+        // Celebrity Zodiac Match
+        function matchCelebrity() {
+            const sign = document.getElementById("celebrity-sign").value;
+            const celebrities = {
+                Aries: "Emma Watson",
+                Taurus: "Dwayne Johnson",
+                Gemini: "Kanye West",
+                Cancer: "Selena Gomez",
+                Leo: "Chris Hemsworth",
+                Virgo: "Zendaya",
+                Libra: "Kim Kardashian",
+                Scorpio: "Ryan Gosling",
+                Sagittarius: "Brad Pitt",
+                Capricorn: "Timothée Chalamet",
+                Aquarius: "Oprah Winfrey",
+                Pisces: "Rihanna"
+            };
+            document.getElementById("celebrity-result").innerText = celebrities[sign]
+                ? `Celebrity with ${sign} sign: ${celebrities[sign]}`
+                : "Please select a sign.";
+        }
+    </script>
+</body>
+</html>
