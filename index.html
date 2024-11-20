@@ -6,6 +6,104 @@
     <title>Zodiac sign</title>
     <style>
 
+            :root {
+            --primary: #124076;
+            --secondary: #86AB89;
+            --background: #E7FBE6;
+            --accent: #DA8359;
+        }
+
+        body {
+            margin: 0;
+            font-family: Arial, sans-serif;
+            background-color: var(--background);
+        }
+
+        /* Overlay */
+        #popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+        }
+
+        /* Popup */
+        #popup-banner {
+            background: var(--primary);
+            color: #fff;
+            width: 90%;
+            max-width: 400px;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+        }
+
+        #popup-banner h2 {
+            margin: 0 0 15px;
+            font-size: 1.5rem;
+            color: var(--secondary);
+            text-align: center;
+        }
+
+        #popup-banner form {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+        }
+
+        #popup-banner label {
+            font-size: 1rem;
+            font-weight: bold;
+        }
+
+        #popup-banner input {
+            padding: 10px;
+            font-size: 1rem;
+            border: 2px solid var(--secondary);
+            border-radius: 5px;
+        }
+
+        #popup-banner button {
+            background: var(--accent);
+            color: #fff;
+            font-size: 1rem;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        #popup-banner button:hover {
+            background: #b86441;
+        }
+
+        /* Mobile Customization */
+        @media (max-width: 600px) {
+            #popup-banner {
+                padding: 15px;
+            }
+
+            #popup-banner h2 {
+                font-size: 1.2rem;
+            }
+
+            #popup-banner input {
+                font-size: 0.9rem;
+                padding: 8px;
+            }
+
+            #popup-banner button {
+                font-size: 0.9rem;
+                padding: 8px;
+            }
+        }
+
           /* Global styles */
         body {
             font-family: Arial, sans-serif;
@@ -144,6 +242,27 @@
     
 </head>
 <body>
+
+      <div id="popup-overlay">
+        <div id="popup-banner">
+            <h2>Fill Out This Form</h2>
+            <form id="popup-form">
+                <label for="email">Email</label>
+                <input type="email" id="email" name="email" required>
+
+                <label for="first-name">First Name</label>
+                <input type="text" id="first-name" name="first-name" required>
+
+                <label for="last-name">Last Name</label>
+                <input type="text" id="last-name" name="last-name" required>
+
+                <label for="age">Age</label>
+                <input type="number" id="age" name="age" min="1" required>
+
+                <button type="submit">Submit</button>
+            </form>
+        </div>
+    </div>
     <h1>Astrology Fun Tools</h1>
 
     <!-- Zodiac Sign Compatibility -->
@@ -268,6 +387,16 @@
 
 
     <script>
+
+         const form = document.getElementById('popup-form');
+        const overlay = document.getElementById('popup-overlay');
+
+        // Prevent closing without submitting
+        form.addEventListener('submit', (e) => {
+            e.preventDefault(); // Prevent page refresh for demonstration
+            alert('Form submitted successfully!');
+            overlay.style.display = 'none';
+        });
         // Zodiac Sign Compatibility
         function checkCompatibility() {
             const sign1 = document.getElementById("sign1").value;
